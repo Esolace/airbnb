@@ -1,0 +1,6 @@
+<%= will_paginate @listings %>
+<% @listings.each_with_index do |l, i| %>
+    <%= i + 1 %>: <%= link_to l.name, l %><br>
+<% end %>
+
+<%= will_paginate @listings %>

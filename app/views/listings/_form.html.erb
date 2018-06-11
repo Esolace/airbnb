@@ -1,0 +1,40 @@
+<%= form_for @listing do |l| %>
+    <div>
+      <%= l.label :name %></br>
+    <%= l.text_field :name %>
+    </div>
+
+    <div>
+      <%= l.label :description %></br>
+    <%= l.text_area :description %> 
+    </div>
+
+    <div>
+      <%= l.label :property_type %></br>
+    <%= l.text_area :property_type %>
+    </div>
+
+    <div>
+      <%= l.label :price %></br>
+    <%= l.text_field :price %>
+    </div>
+
+    <div>
+      <%= l.label :address %></br>
+    <%= l.text_area :address %>
+    </div>
+
+    <div>
+      <%= l.label :city %></br>
+    <%= l.text_field :city %>
+    </div>
+
+    <div>
+      <%= l.label :state %></br>
+    <%= l.text_field :state %>
+    </div>
+
+    <div>
+    <%= l.submit %>
+    </div>
+<% end %>

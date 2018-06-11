@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   # root "sessions#new"
 
   root "home#index"
+
+  resources :listings
 end
