@@ -65,3 +65,5 @@ gem "clearance"
 gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'faker'
+gem 'will_paginate', '~> 3.1.1'

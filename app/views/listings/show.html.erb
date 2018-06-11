@@ -1,0 +1,49 @@
+<h1><%= @listing.name %></h1>
+
+<p>
+<strong>Body:</strong>
+<%= @listing.description %>
+</p>
+
+<p>
+<strong>Type of Property:</strong>
+<%= @listing.property_type %>
+</p>
+
+<p>
+<strong>Price:</strong>
+<%= @listing.price %>
+</p>
+
+<p>
+<strong>Type of Place:</strong>
+<%= @listing.place_type %>
+</p>
+
+<p>
+<strong>Address:</strong>
+<%= @listing.address %>
+</p>
+
+<p>
+<strong>City:</strong>
+<%= @listing.city %>
+</p>
+
+<p>
+<strong>State:</strong>
+<%= @listing.state %>
+</p>
+
+<p>
+<strong>Country:</strong>
+<%= @listing.country %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_listing_path(@listing) %>
+
+<%= link_to 'Delete', @listing, method: :delete %>
+
+
