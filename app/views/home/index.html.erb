@@ -1,2 +1,7 @@
 <h1>Welcome to Pairbnb</h1>
-<%= link_to "New Listing", new_listing_path %>
+
+ <%= link_to 'View All Listings', listings_path %></br>
+
+<% if can? :create, Listing %>
+    <%= link_to "New Listing", new_listing_path %>
+<% end %>

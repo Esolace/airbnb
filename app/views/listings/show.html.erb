@@ -41,9 +41,11 @@
 </p>
 
 
+<% if current_user%>
+    <% if current_user.superadmin_role? || ( current_user.moderator_role? &&@listing.user == current_user ) %> 
+        <%= link_to 'Edit', edit_listing_path(@listing) %>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %>
-
-<%= link_to 'Delete', @listing, method: :delete %>
-
+        <%= link_to 'Delete', @listing, method: :delete %>
+    <% end %>
+<% end %>
 

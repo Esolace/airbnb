@@ -10,7 +10,7 @@ class UsersController < Clearance::UsersController
       end
     
       def new
-        @user = user_from_params
+        @user = User.new
         render template: "users/new"
       end
     
@@ -48,14 +48,16 @@ class UsersController < Clearance::UsersController
       def user_from_params
         email = user_params.delete(:email)
         password = user_params.delete(:password)
-    
-        Clearance.configuration.user_model.new(user_params).tap do |user|
-          user.email = email
-          user.password = password
+        moderator = false
+        user = true
+        if user_params[:moderator_role] == "1"
+          moderator = true
+          user = false
         end
+        User.new(email: email, password: password, moderator_role: moderator, user_role: user)
       end
     
       def user_params
-        params[Clearance.configuration.user_parameter] || Hash.new
+        params.require(:user).permit(:email, :password, :moderator_role) || Hash.new
       end
 end 
