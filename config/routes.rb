@@ -2,13 +2,15 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
-  resources :users, controller: "users", only: [:create] do
+  resources :users, controller: "users", only: [:create, :show] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
 
   get "/sign_in" => "sessions#new", as: "sign_in"
+  get "/verify/listings" => "listings#not_verify", as: "verify_listings"
+  post "/verify/listings/:id" => "listings#verify", as: "verify_listing"
   delete "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

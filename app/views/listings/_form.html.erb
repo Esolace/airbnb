@@ -31,10 +31,16 @@
 
     <div>
       <%= l.label :state %></br>
-    <%= l.text_field :state %>
+      <%= l.text_field :state %>
+    </div>
+
+    <div class="image-field">
+      <%= l.label :image %></br>
+      <%= l.file_field :avatars, multiple: true %>
     </div>
 
     <div>
     <%= l.submit %>
     </div>
+    
 <% end %>

@@ -1,0 +1,15 @@
+
+
+ <%@listings.each do |l|%>
+    <h2>
+    <%= l.name %>
+    </h2>
+    <p>
+    <%= l.description %> 
+    <div class="verify-button">
+            <% if current_user.superadmin_role == true %>
+            <%= button_to "verify", verify_listing_path(l) %>
+            <% end %>
+    </div></p>
+<% end %>
+

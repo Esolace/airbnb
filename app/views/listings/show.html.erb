@@ -1,7 +1,7 @@
 <h1><%= @listing.name %></h1>
 
 <p>
-<strong>Body:</strong>
+<strong>Description:</strong>
 <%= @listing.description %>
 </p>
 
@@ -39,6 +39,12 @@
 <strong>Country:</strong>
 <%= @listing.country %>
 </p>
+
+<% if @listing.avatars.count != 0 %>
+    <% @listing.avatars.each do |img| %>
+        <img src="<%= img.thumb.url %>">
+    <% end %>
+<% end %> </br>
 
 
 <% if current_user%>

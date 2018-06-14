@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
     load_and_authorize_resource
     def index
-        @listings = Listing.all.paginate(page: params[:page])
+        @listings = Listing.where(verify: true).paginate(page: params[:page])
     end
 
     def new # show form for a new listing
@@ -40,8 +40,20 @@ class ListingsController < ApplicationController
         redirect_to listings_path
     end
 
+    def not_verify
+        @listings = Listing.where(verify: false)
+        render "verify"
+    end
+
+    def verify
+        @listing = Listing.find(params[:id])
+        @listing.verify = true
+        @listing.save
+        redirect_to listings_path
+    end
+
     private
     def listing_params
-        params.require(:listing).permit(:name, :description, :property_type, :price, :address, :city, :state)
+        params.require(:listing).permit(:name, :description, :property_type, :price, :address, :city, :state, {avatars: []})
     end
 end
