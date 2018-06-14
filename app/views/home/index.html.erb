@@ -2,6 +2,12 @@
 
  <%= link_to 'View All Listings', listings_path %></br>
 
-<% if can? :create, Listing %>
-    <%= link_to "New Listing", new_listing_path %>
+ <% if current_user.superadmin_role == true %>
+    <%= link_to "View Unverified Listings", verify_listings_path %></br>
 <% end %>
+
+<% if can? :create, Listing %>
+    <%= link_to "New Listing", new_listing_path %></br>
+<% end %>
+
+<%= link_to 'My profile', user_path(current_user.id) %>

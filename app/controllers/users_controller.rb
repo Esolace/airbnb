@@ -25,6 +25,13 @@ class UsersController < Clearance::UsersController
         end
       end
     
+      def show 
+        @user =  User.find(params[:id])
+        if @user != current_user 
+          redirect_to '/'
+        end
+      end 
+
       private
     
       def avoid_sign_in
@@ -46,18 +53,22 @@ class UsersController < Clearance::UsersController
       end
     
       def user_from_params
+        first_name = user_params.delete(:first_name)
+        last_name = user_params.delete(:last_name)
         email = user_params.delete(:email)
+        country = user_params.delete(:country)
         password = user_params.delete(:password)
+        avatar = user_params.delete(:avatar)
         moderator = false
         user = true
         if user_params[:moderator_role] == "1"
           moderator = true
           user = false
         end
-        User.new(email: email, password: password, moderator_role: moderator, user_role: user)
+        User.new(first_name: first_name, last_name: last_name, email: email, country: country, password: password, moderator_role: moderator, user_role: user, avatar: avatar)
       end
     
       def user_params
-        params.require(:user).permit(:email, :password, :moderator_role) || Hash.new
+        params.require(:user).permit(:email, :password, :avatar, :moderator_role, :first_name, :last_name, :country) || Hash.new
       end
 end 
